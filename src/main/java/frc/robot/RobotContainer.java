@@ -4,60 +4,80 @@
 
 package frc.robot;
 
-import frc.robot.Constants.OperatorConstants;
-import frc.robot.commands.Autos;
-import frc.robot.commands.ExampleCommand;
-import frc.robot.subsystems.ExampleSubsystem;
-import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
-import edu.wpi.first.wpilibj2.command.button.Trigger;
+import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.Servo;
+import edu.wpi.first.wpilibj2.command.Commands;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Mechanism;
+import frc.robot.Constants.OIConstants;
+import frc.robot.commands.CoralInTakeCmd;
+import frc.robot.commands.JoystickHandCmd;
+import frc.robot.commands.JoystickLidCmd;
+import frc.robot.commands.JoystickSwerveCmd;
+import frc.robot.subsystems.CoralInTakeSubsystem;
+import frc.robot.subsystems.HandSubsystem;
+import frc.robot.subsystems.LidSubsystem;
+import frc.robot.subsystems.SwerveSubsystem;
+import frc.robot.subsystems.AlgaInTakeSubsystem;
 
-/**
- * This class is where the bulk of the robot should be declared. Since Command-based is a
- * "declarative" paradigm, very little robot logic should actually be handled in the {@link Robot}
- * periodic methods (other than the scheduler calls). Instead, the structure of the robot (including
- * subsystems, commands, and trigger mappings) should be declared here.
- */
 public class RobotContainer {
-  // The robot's subsystems and commands are defined here...
-  private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
+  // Subsystems
+  private final SwerveSubsystem swerveSubsystem = new SwerveSubsystem();
+  private final CoralInTakeSubsystem coralInTakeSubsystem = new CoralInTakeSubsystem();
+  private final HandSubsystem handSubsystem = new HandSubsystem();
+  private final AlgaInTakeSubsystem algaInTakeSubsystem = new AlgaInTakeSubsystem();
+  private final LidSubsystem lidSubsystem = new LidSubsystem();
+  //private final VisionAprilTagSubsystem visionAprilTagSubsystem = new VisionAprilTagSubsystem();
 
-  // Replace with CommandPS4Controller or CommandJoystick if needed
-  private final CommandXboxController m_driverController =
-      new CommandXboxController(OperatorConstants.kDriverControllerPort);
+  // Contrillers
+  private final Joystick driverJoystick = new Joystick(OIConstants.kDriverControllerPort);
+  private final Joystick mechanismsJoystick = new Joystick(OIConstants.kMechanismsControllerPort);
 
-  /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
-    // Configure the trigger bindings
+    // Default commands
+    swerveSubsystem.setDefaultCommand(new JoystickSwerveCmd(
+      swerveSubsystem,
+      () -> -driverJoystick.getRawAxis(OIConstants.kDriverYAxis),
+      () -> driverJoystick.getRawAxis(OIConstants.kDriverXAxis),
+      () -> driverJoystick.getRawAxis(OIConstants.kDriverRotAxis),
+      () -> driverJoystick.getRawButton(OIConstants.kDriverFieldOrientedButtonIdx)
+    ));
+
+    coralInTakeSubsystem.setDefaultCommand(new CoralInTakeCmd(coralInTakeSubsystem, 
+    () -> mechanismsJoystick.getRawButton(OIConstants.coralTakeIn), 
+    () -> mechanismsJoystick.getRawButton(OIConstants.coralTakeOut)
+    ));
+
+    algaInTakeSubsystem.setDefaultCommand(new CoralInTakeCmd(coralInTakeSubsystem, 
+    () -> mechanismsJoystick.getRawButton(OIConstants.coralTakeIn), 
+    () -> mechanismsJoystick.getRawButton(OIConstants.coralTakeOut)
+    ));
+
+    handSubsystem.setDefaultCommand(new JoystickHandCmd(handSubsystem,
+    () -> driverJoystick.getRawButton(OIConstants.handIn), 
+    () -> driverJoystick.getRawButton(OIConstants.handOut)
+    ));
+
+   lidSubsystem.setDefaultCommand(new JoystickLidCmd(lidSubsystem,
+   () -> driverJoystick.getRawButton(OIConstants.lidIn), 
+    () -> driverJoystick.getRawButton(OIConstants.lidOut)
+   ));
+
+    // Trigger bindings
     configureBindings();
   }
 
-  /**
-   * Use this method to define your trigger->command mappings. Triggers can be created via the
-   * {@link Trigger#Trigger(java.util.function.BooleanSupplier)} constructor with an arbitrary
-   * predicate, or via the named factories in {@link
-   * edu.wpi.first.wpilibj2.command.button.CommandGenericHID}'s subclasses for {@link
-   * CommandXboxController Xbox}/{@link edu.wpi.first.wpilibj2.command.button.CommandPS4Controller
-   * PS4} controllers or {@link edu.wpi.first.wpilibj2.command.button.CommandJoystick Flight
-   * joysticks}.
-   */
   private void configureBindings() {
-    // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
-    new Trigger(m_exampleSubsystem::exampleCondition)
-        .onTrue(new ExampleCommand(m_exampleSubsystem));
+    new JoystickButton(driverJoystick, OIConstants.kDriveResetHeading).onTrue(new InstantCommand(() -> swerveSubsystem.zeroHeading()));
 
-    // Schedule `exampleMethodCommand` when the Xbox controller's B button is pressed,
-    // cancelling on release.
-    m_driverController.b().whileTrue(m_exampleSubsystem.exampleMethodCommand());
+    
+
+    //new JoystickButton(driverJoystick, 4).onTrue(new AimTagCmd(swerveSubsystem, visionAprilTagSubsystem));
   }
 
-  /**
-   * Use this to pass the autonomous command to the main {@link Robot} class.
-   *
-   * @return the command to run in autonomous
-   */
-  public Command getAutonomousCommand() {
-    // An example command will be run in autonomous
-    return Autos.exampleAuto(m_exampleSubsystem);
-  }
+  // public Command getAutonomousCommand() {
+  //   return autoChooser.getSelected();
+  // }
 }

@@ -4,20 +4,20 @@ import com.revrobotics.spark.SparkLowLevel.MotorType;
 import com.revrobotics.spark.SparkMax;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-public class CoralInTakeSubsystem extends SubsystemBase{
-    private static SparkMax clawWheels = new SparkMax(9, MotorType.kBrushless);
+public class AlgaeInTakeSubsystem extends SubsystemBase{
+    private static SparkMax wheels = new SparkMax(13, MotorType.kBrushless);
     
-    public CoralInTakeSubsystem() { }
+    public AlgaeInTakeSubsystem() { }
 
     public void in(double speed){
-        clawWheels.set(speed);
+        wheels.set(speed);
     }
 
     public void out(double speed){
-        clawWheels.set(-speed);
+        wheels.set(-speed);
     }
 
     public void stop(){
-        clawWheels.set(0);
+        wheels.set(0);
     }
 }

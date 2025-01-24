@@ -3,30 +3,29 @@ package frc.robot.commands;
 import java.util.function.Supplier;
 
 import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.Constants.MechanismsConstants;
 import frc.robot.subsystems.HandSubsystem;
 
 public class JoystickHandCmd extends Command {
 
     private final HandSubsystem handSubsystem;
 
-    private final Supplier<Boolean> down, up;
+    private final Supplier<Boolean> downFunction, upFunction;
 
-    public JoystickHandCmd(HandSubsystem handSubsystem, Supplier<Boolean> up, Supplier<Boolean> down){
+    public JoystickHandCmd(HandSubsystem handSubsystem, Supplier<Boolean> upFunction, Supplier<Boolean> downFunction){
         this.handSubsystem = handSubsystem;
-        this.up = up;
-        this.down = down;
+        this.upFunction = upFunction;
+        this.downFunction = downFunction;
         addRequirements(handSubsystem);
     }
 
     @Override 
     public void execute(){
-        if (up.get()){
-            handSubsystem.up(0.5);
-        }
-        else if (down.get()){
-            handSubsystem.down(0.5);
-        }
-        else{
+        if(upFunction.get()){
+            handSubsystem.up(MechanismsConstants.kHandUpSpeed);
+        } else if(downFunction.get()){
+            handSubsystem.down(MechanismsConstants.kHandDownSpeed);
+        } else {
             handSubsystem.stop();
         }
     }
@@ -38,6 +37,6 @@ public class JoystickHandCmd extends Command {
 
     @Override
     public void end(boolean interrupted){
-        
+        handSubsystem.stop();
     }
 }

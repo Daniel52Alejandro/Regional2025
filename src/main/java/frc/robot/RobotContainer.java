@@ -12,7 +12,8 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Mechanism;
 import frc.robot.Constants.OIConstants;
-import frc.robot.commands.CoralInTakeCmd;
+import frc.robot.commands.JoystickAlgaeInTakeCmd;
+import frc.robot.commands.JoystickCoralInTakeCmd;
 import frc.robot.commands.JoystickHandCmd;
 import frc.robot.commands.JoystickLidCmd;
 import frc.robot.commands.JoystickSwerveCmd;
@@ -20,16 +21,15 @@ import frc.robot.subsystems.CoralInTakeSubsystem;
 import frc.robot.subsystems.HandSubsystem;
 import frc.robot.subsystems.LidSubsystem;
 import frc.robot.subsystems.SwerveSubsystem;
-import frc.robot.subsystems.AlgaInTakeSubsystem;
+import frc.robot.subsystems.AlgaeInTakeSubsystem;
 
 public class RobotContainer {
   // Subsystems
   private final SwerveSubsystem swerveSubsystem = new SwerveSubsystem();
   private final CoralInTakeSubsystem coralInTakeSubsystem = new CoralInTakeSubsystem();
   private final HandSubsystem handSubsystem = new HandSubsystem();
-  private final AlgaInTakeSubsystem algaInTakeSubsystem = new AlgaInTakeSubsystem();
+  private final AlgaeInTakeSubsystem algaeInTakeSubsystem = new AlgaeInTakeSubsystem();
   private final LidSubsystem lidSubsystem = new LidSubsystem();
-  //private final VisionAprilTagSubsystem visionAprilTagSubsystem = new VisionAprilTagSubsystem();
 
   // Contrillers
   private final Joystick driverJoystick = new Joystick(OIConstants.kDriverControllerPort);
@@ -45,36 +45,36 @@ public class RobotContainer {
       () -> driverJoystick.getRawButton(OIConstants.kDriverFieldOrientedButtonIdx)
     ));
 
-    coralInTakeSubsystem.setDefaultCommand(new CoralInTakeCmd(coralInTakeSubsystem, 
-    () -> mechanismsJoystick.getRawButton(OIConstants.coralTakeIn), 
-    () -> mechanismsJoystick.getRawButton(OIConstants.coralTakeOut)
+    coralInTakeSubsystem.setDefaultCommand(new JoystickCoralInTakeCmd(
+      coralInTakeSubsystem, 
+      () -> mechanismsJoystick.getRawButton(OIConstants.kMechanismsCoralIn), 
+      () -> mechanismsJoystick.getRawButton(OIConstants.kMechanismsCoralOut)
     ));
 
-    algaInTakeSubsystem.setDefaultCommand(new CoralInTakeCmd(coralInTakeSubsystem, 
-    () -> mechanismsJoystick.getRawButton(OIConstants.coralTakeIn), 
-    () -> mechanismsJoystick.getRawButton(OIConstants.coralTakeOut)
+    algaeInTakeSubsystem.setDefaultCommand(new JoystickAlgaeInTakeCmd(
+      algaeInTakeSubsystem, 
+      () -> mechanismsJoystick.getRawButton(OIConstants.kMechanismsAlgaeOut), 
+      () -> mechanismsJoystick.getRawButton(OIConstants.kMechanismsAlgaeIn)
     ));
 
-    handSubsystem.setDefaultCommand(new JoystickHandCmd(handSubsystem,
-    () -> driverJoystick.getRawButton(OIConstants.handIn), 
-    () -> driverJoystick.getRawButton(OIConstants.handOut)
+    handSubsystem.setDefaultCommand(new JoystickHandCmd(
+      handSubsystem,
+      () -> driverJoystick.getRawButton(OIConstants.kMechanismsHandUp), 
+      () -> driverJoystick.getRawButton(OIConstants.kMechanismsHandDown)
     ));
 
-   lidSubsystem.setDefaultCommand(new JoystickLidCmd(lidSubsystem,
-   () -> driverJoystick.getRawButton(OIConstants.lidIn), 
-    () -> driverJoystick.getRawButton(OIConstants.lidOut)
-   ));
+    lidSubsystem.setDefaultCommand(new JoystickLidCmd(
+      lidSubsystem,
+      () -> driverJoystick.getRawButton(OIConstants.kMechanismsLidUp), 
+      () -> driverJoystick.getRawButton(OIConstants.kMechanismsLidDown)
+    ));
 
     // Trigger bindings
     configureBindings();
   }
 
   private void configureBindings() {
-    new JoystickButton(driverJoystick, OIConstants.kDriveResetHeading).onTrue(new InstantCommand(() -> swerveSubsystem.zeroHeading()));
-
-    
-
-    //new JoystickButton(driverJoystick, 4).onTrue(new AimTagCmd(swerveSubsystem, visionAprilTagSubsystem));
+    new JoystickButton(driverJoystick, OIConstants.kDriverResetHeading).onTrue(new InstantCommand(() -> swerveSubsystem.zeroHeading()));
   }
 
   // public Command getAutonomousCommand() {

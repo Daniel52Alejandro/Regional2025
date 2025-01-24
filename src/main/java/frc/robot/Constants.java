@@ -30,7 +30,6 @@ public final class Constants {
   }
 
   public static final class DriveConstants {
-
     public static final double kTrackWidth = Units.inchesToMeters(21.5);
     // Distance between right and left wheels
     public static final double kWheelBase = Units.inchesToMeters(21.5);
@@ -85,42 +84,50 @@ public final class Constants {
     public static final double kTeleDriveMaxAccelerationUnitsPerSecond = 3;
     public static final double kTeleDriveMaxAngularAccelerationUnitsPerSecond = 3;
   }
+
+  public static final class MechanismsConstants {
+    // Algae
+    public static final double kAlgaeInSpeed = 0.5;
+    public static final double kAlgaeOutSpeed = 0.5;
+
+    // Coral
+    public static final double kCoralInSpeed = 0.5;
+    public static final double kCoralOutSpeed = 0.5;
+
+    // Hand
+    public static final double kHandDownSpeed = 0.5;
+    public static final double kHandUpSpeed = 0.5;
+
+    // Lid
+    public static final double kLidDownSpeed = 0.5;
+    public static final double kLidUpSpeed = 0.5;
+  }
+
   public static final class OIConstants {
     public static final int kDriverControllerPort = 0;
     public static final int kMechanismsControllerPort = 1;
     public static final double kDeadband = 0.25;
 
-
     //Driver
-
     public static final int kDriverYAxis = 1;
     public static final int kDriverXAxis = 0;
     public static final int kDriverRotAxis = 4;
 
     public static final int kDriverFieldOrientedButtonIdx = 6;
-    public static final int kDriveResetHeading = 2;
-
+    public static final int kDriverResetHeading = 2;
 
     //Mechanisms
-    public static final int MechanismsArmUp = 3;
-    public static final int MechanismsArmDown = 2;
+    public static final int kMechanismsArmUp = 3;
+    public static final int kMechanismsArmDown = 2;
 
-    public static final int algaeTakeIn = 7;
-    public static final int algaeTakeOut = 8;
-    public static final int coralTakeIn = 5;
-    public static final int coralTakeOut = 6;
-    public static final int handOut = 5;
-    public static final int handIn = 6;
-    public static final int lidIn = 4;
-    public static final int lidOut = 1;
+    public static final int kMechanismsAlgaeIn = 9;
+    public static final int kMechanismsAlgaeOut = 8;
+    public static final int kMechanismsCoralIn = 5;
+    public static final int kMechanismsCoralOut = 4;
+    public static final int kMechanismsHandDown = 7;
+    public static final int kMechanismsHandUp = 6;
+    public static final int kMechanismsLidDown = 1;
+    public static final int kMechanismsLidUp = 0;
 
-  }
-
-  public enum Reef {
-    L1,
-    L2,
-    L3,
-    L4;
-  }
-  
+  }  
 }

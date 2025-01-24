@@ -53,7 +53,7 @@ public class JoystickSwerveCmd extends Command {
 
         // 4. Construct desired chassis speeds
         ChassisSpeeds chassisSpeeds;
-        if (fieldOrientedFunction.get()) {
+        if(fieldOrientedFunction.get()) {
             // Relative to robot
             chassisSpeeds = new ChassisSpeeds(xSpeed, ySpeed, turningSpeed);
             isFieldOriented = false;
@@ -75,12 +75,12 @@ public class JoystickSwerveCmd extends Command {
     }
 
     @Override
-    public void end(boolean interrupted) {
-        swerveSubsystem.stopModules();
+    public boolean isFinished() {
+        return false;
     }
 
     @Override
-    public boolean isFinished() {
-        return false;
+    public void end(boolean interrupted) {
+        swerveSubsystem.stopModules();
     }
 }

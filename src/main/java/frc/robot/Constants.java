@@ -101,6 +101,11 @@ public final class Constants {
     // Lid
     public static final double kLidDownSpeed = 0.5;
     public static final double kLidUpSpeed = 0.5;
+
+    // Elevator
+    public static final int kElevatorLeaderMotorPort = 11;
+    public static final int kElevatorFollowerMotorPort = 11;
+  
   }
 
   public static final class OIConstants {

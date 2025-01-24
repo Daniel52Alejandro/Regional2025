@@ -102,10 +102,13 @@ public final class Constants {
     public static final double kLidDownSpeed = 0.5;
     public static final double kLidUpSpeed = 0.5;
 
-    // Elevator
+    // Elevator (Check IDs)
     public static final int kElevatorLeaderMotorPort = 11;
     public static final int kElevatorFollowerMotorPort = 11;
-  
+
+    // Scaler (Check IDs)
+    public static final int kScalerLeaderMotorPort = 11;
+    public static final int kScalerFollowerMotorPort = 11;
   }
 
   public static final class OIConstants {
@@ -113,7 +116,7 @@ public final class Constants {
     public static final int kMechanismsControllerPort = 1;
     public static final double kDeadband = 0.25;
 
-    //Driver
+    // Driver
     public static final int kDriverYAxis = 1;
     public static final int kDriverXAxis = 0;
     public static final int kDriverRotAxis = 4;
@@ -121,7 +124,7 @@ public final class Constants {
     public static final int kDriverFieldOrientedButtonIdx = 6;
     public static final int kDriverResetHeading = 2;
 
-    //Mechanisms
+    // Mechanisms
     public static final int kMechanismsArmUp = 3;
     public static final int kMechanismsArmDown = 2;
 

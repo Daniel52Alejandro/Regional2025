@@ -7,7 +7,7 @@ import com.revrobotics.spark.SparkMax;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.MechanismsConstants;
 
-public class ScalerSubsystem extends SubsystemBase{
+public class ScalerSubsystem extends SubsystemBase {
     private SparkMax scalerLeader = new SparkMax(MechanismsConstants.kScalerLeaderMotorPort, MotorType.kBrushless);
     private SparkMax scalerFollower = new SparkMax(MechanismsConstants.kScalerFollowerMotorPort, MotorType.kBrushless);
 

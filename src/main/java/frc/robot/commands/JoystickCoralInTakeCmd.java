@@ -37,6 +37,6 @@ public class JoystickCoralInTakeCmd extends Command {
 
     @Override
     public void end(boolean interrupted){
-        
+        coralInTakeSubsystem.stop();
     }
 }

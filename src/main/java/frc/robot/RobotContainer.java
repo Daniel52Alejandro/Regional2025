@@ -14,12 +14,16 @@ import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Mechanism;
 import frc.robot.Constants.OIConstants;
 import frc.robot.commands.JoystickAlgaeInTakeCmd;
 import frc.robot.commands.JoystickCoralInTakeCmd;
+import frc.robot.commands.JoystickElevatorCmd;
 import frc.robot.commands.JoystickHandCmd;
 import frc.robot.commands.JoystickLidCmd;
+import frc.robot.commands.JoystickScalerCmd;
 import frc.robot.commands.JoystickSwerveCmd;
 import frc.robot.subsystems.CoralInTakeSubsystem;
+import frc.robot.subsystems.ElevatorSubsystem;
 import frc.robot.subsystems.HandSubsystem;
 import frc.robot.subsystems.LidSubsystem;
+import frc.robot.subsystems.ScalerSubsystem;
 import frc.robot.subsystems.SwerveSubsystem;
 import frc.robot.subsystems.AlgaeInTakeSubsystem;
 
@@ -30,7 +34,8 @@ public class RobotContainer {
   private final HandSubsystem handSubsystem = new HandSubsystem();
   private final AlgaeInTakeSubsystem algaeInTakeSubsystem = new AlgaeInTakeSubsystem();
   private final LidSubsystem lidSubsystem = new LidSubsystem();
-
+  private final ElevatorSubsystem elevatorSubsystem = new ElevatorSubsystem();
+  private final ScalerSubsystem scalerSubsystem = new ScalerSubsystem();
   // Contrillers
   private final Joystick driverJoystick = new Joystick(OIConstants.kDriverControllerPort);
   private final Joystick mechanismsJoystick = new Joystick(OIConstants.kMechanismsControllerPort);
@@ -69,6 +74,19 @@ public class RobotContainer {
       () -> driverJoystick.getRawButton(OIConstants.kMechanismsLidDown)
     ));
 
+    elevatorSubsystem.setDefaultCommand(new JoystickElevatorCmd(
+      elevatorSubsystem,
+      () -> driverJoystick.getRawButton(OIConstants.kMechanismsElevatorUp), 
+      () -> driverJoystick.getRawButton(OIConstants.kMechanismsElevatorDown)
+    ));
+
+    scalerSubsystem.setDefaultCommand(new JoystickScalerCmd(
+      scalerSubsystem,
+      () -> driverJoystick.getRawButton(OIConstants.kMechanismsScalerUp), 
+      () -> driverJoystick.getRawButton(OIConstants.kMechanismsScalerDown)
+    ));
+
+
     // Trigger bindings
     configureBindings();
   }
@@ -76,8 +94,4 @@ public class RobotContainer {
   private void configureBindings() {
     new JoystickButton(driverJoystick, OIConstants.kDriverResetHeading).onTrue(new InstantCommand(() -> swerveSubsystem.zeroHeading()));
   }
-
-  // public Command getAutonomousCommand() {
-  //   return autoChooser.getSelected();
-  // }
 }

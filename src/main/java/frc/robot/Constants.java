@@ -105,10 +105,14 @@ public final class Constants {
     // Elevator (Check IDs)
     public static final int kElevatorLeaderMotorPort = 11;
     public static final int kElevatorFollowerMotorPort = 11;
+    public static final double kElevatorUpSpeed = 0.5;
+    public static final double kElevatorDownSpeed = 0.5;
 
     // Scaler (Check IDs)
     public static final int kScalerLeaderMotorPort = 11;
     public static final int kScalerFollowerMotorPort = 11;
+    public static final double kScalerUpSpeed = 0.5;
+    public static final double kScalerDownSpeed = 0.5;
   }
 
   public static final class OIConstants {
@@ -125,8 +129,6 @@ public final class Constants {
     public static final int kDriverResetHeading = 2;
 
     // Mechanisms
-    public static final int kMechanismsArmUp = 3;
-    public static final int kMechanismsArmDown = 2;
 
     public static final int kMechanismsAlgaeIn = 9;
     public static final int kMechanismsAlgaeOut = 8;
@@ -136,6 +138,12 @@ public final class Constants {
     public static final int kMechanismsHandUp = 6;
     public static final int kMechanismsLidDown = 1;
     public static final int kMechanismsLidUp = 0;
+    public static final int kMechanismsElevatorUp = 10;
+    public static final int kMechanismsElevatorDown = 11;
+    public static final int kMechanismsScalerUp = 2;
+    public static final int kMechanismsScalerDown = 3;
+
+
 
   }  
 }

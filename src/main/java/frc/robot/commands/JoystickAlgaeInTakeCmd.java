@@ -37,6 +37,6 @@ public class JoystickAlgaeInTakeCmd extends Command {
 
     @Override
     public void end(boolean interrupted){
-        
+        algaeInTakeSubsystem.stop();
     }
 }

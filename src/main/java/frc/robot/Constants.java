@@ -129,7 +129,6 @@ public final class Constants {
     public static final int kDriverResetHeading = 2;
 
     // Mechanisms
-
     public static final int kMechanismsAlgaeIn = 9;
     public static final int kMechanismsAlgaeOut = 8;
     public static final int kMechanismsCoralIn = 5;
@@ -142,8 +141,6 @@ public final class Constants {
     public static final int kMechanismsElevatorDown = 11;
     public static final int kMechanismsScalerUp = 2;
     public static final int kMechanismsScalerDown = 3;
-
-
 
   }  
 }

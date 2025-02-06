@@ -36,7 +36,7 @@ public class RobotContainer {
   private final LidSubsystem lidSubsystem = new LidSubsystem();
   private final ElevatorSubsystem elevatorSubsystem = new ElevatorSubsystem();
   private final ScalerSubsystem scalerSubsystem = new ScalerSubsystem();
-  // Contrillers
+  // Controllers
   private final Joystick driverJoystick = new Joystick(OIConstants.kDriverControllerPort);
   private final Joystick mechanismsJoystick = new Joystick(OIConstants.kMechanismsControllerPort);
 
@@ -64,8 +64,8 @@ public class RobotContainer {
 
     handSubsystem.setDefaultCommand(new JoystickHandCmd(
       handSubsystem,
-      () -> driverJoystick.getRawButton(OIConstants.kMechanismsHandUp), 
-      () -> driverJoystick.getRawButton(OIConstants.kMechanismsHandDown)
+      () -> mechanismsJoystick.getRawButton(OIConstants.kMechanismsHandUp), 
+      () -> mechanismsJoystick.getRawButton(OIConstants.kMechanismsHandDown)
     ));
 
     lidSubsystem.setDefaultCommand(new JoystickLidCmd(
@@ -85,7 +85,6 @@ public class RobotContainer {
       () -> driverJoystick.getRawButton(OIConstants.kMechanismsScalerUp), 
       () -> driverJoystick.getRawButton(OIConstants.kMechanismsScalerDown)
     ));
-
 
     // Trigger bindings
     configureBindings();

@@ -6,10 +6,11 @@ import com.revrobotics.spark.SparkMax;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants.MechanismsConstants;
 
 public class HandSubsystem extends SubsystemBase{
 
-    private static SparkMax hand = new SparkMax(11, MotorType.kBrushless);
+    private static SparkMax hand = new SparkMax(MechanismsConstants.kHandMotorPort, MotorType.kBrushless);
     DigitalInput leftSwitch = new DigitalInput(0);
     DigitalInput rightSwitch = new DigitalInput(0);
 
@@ -40,7 +41,7 @@ public class HandSubsystem extends SubsystemBase{
     }
 
     public void stop(){
-        hand.set(0);
+        hand.stopMotor();
     }
 
     @Override

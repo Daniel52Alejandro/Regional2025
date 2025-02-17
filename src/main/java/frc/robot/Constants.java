@@ -87,32 +87,36 @@ public final class Constants {
 
   public static final class MechanismsConstants {
     // Algae
-    public static final double kAlgaeInSpeed = 0.5;
-    public static final double kAlgaeOutSpeed = 0.5;
+    public static final int kAlgaeMotorPort = 1;
+    public static final double kAlgaeInSpeed = 0.1;
+    public static final double kAlgaeOutSpeed = 0.1;
 
     // Coral
-    public static final double kCoralInSpeed = 0.5;
-    public static final double kCoralOutSpeed = 0.5;
+    public static final int kCoralMotorPort = 1; 
+    public static final double kCoralInSpeed = 0.1;
+    public static final double kCoralOutSpeed = 0.1;
 
     // Hand
-    public static final double kHandDownSpeed = 0.5;
-    public static final double kHandUpSpeed = 0.5;
+    public static final int kHandMotorPort = 1;
+    public static final double kHandDownSpeed = 0.1;
+    public static final double kHandUpSpeed = 0.1;
 
     // Lid
-    public static final double kLidDownSpeed = 0.5;
-    public static final double kLidUpSpeed = 0.5;
+    public static final int kLidMotorPort = 1;
+    public static final double kLidDownSpeed = 0.1;
+    public static final double kLidUpSpeed = 0.1;
 
     // Elevator (Check IDs)
     public static final int kElevatorLeaderMotorPort = 11;
     public static final int kElevatorFollowerMotorPort = 11;
-    public static final double kElevatorUpSpeed = 0.5;
-    public static final double kElevatorDownSpeed = 0.5;
+    public static final double kElevatorUpSpeed = 0.1;
+    public static final double kElevatorDownSpeed = 0.1;
 
     // Scaler (Check IDs)
     public static final int kScalerLeaderMotorPort = 11;
     public static final int kScalerFollowerMotorPort = 11;
-    public static final double kScalerUpSpeed = 0.5;
-    public static final double kScalerDownSpeed = 0.5;
+    public static final double kScalerUpSpeed = 0.1;
+    public static final double kScalerDownSpeed = 0.1;
   }
 
   public static final class OIConstants {

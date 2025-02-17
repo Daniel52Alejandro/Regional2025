@@ -9,7 +9,6 @@ import frc.robot.subsystems.HandSubsystem;
 public class JoystickHandCmd extends Command {
 
     private final HandSubsystem handSubsystem;
-
     private final Supplier<Boolean> downFunction, upFunction;
 
     public JoystickHandCmd(HandSubsystem handSubsystem, Supplier<Boolean> upFunction, Supplier<Boolean> downFunction){

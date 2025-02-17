@@ -27,6 +27,6 @@ public class ScalerSubsystem extends SubsystemBase {
     }
 
     public void stop() {
-        scalerLeader.set(0);
+        scalerLeader.stopMotor();
     }
 }

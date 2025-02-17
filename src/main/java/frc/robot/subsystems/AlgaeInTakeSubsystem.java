@@ -3,9 +3,10 @@ package frc.robot.subsystems;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
 import com.revrobotics.spark.SparkMax;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants.MechanismsConstants;
 
 public class AlgaeInTakeSubsystem extends SubsystemBase{
-    private static SparkMax wheels = new SparkMax(13, MotorType.kBrushless);
+    private static SparkMax wheels = new SparkMax(MechanismsConstants.kAlgaeMotorPort, MotorType.kBrushless);
     
     public AlgaeInTakeSubsystem() { }
 
@@ -18,6 +19,6 @@ public class AlgaeInTakeSubsystem extends SubsystemBase{
     }
 
     public void stop(){
-        wheels.set(0);
+        wheels.stopMotor();
     }
 }

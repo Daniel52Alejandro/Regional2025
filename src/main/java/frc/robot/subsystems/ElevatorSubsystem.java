@@ -27,6 +27,7 @@ public class ElevatorSubsystem extends SubsystemBase{
     }
 
     public void stop() {
-        elevatorLeader.set(0);
+        elevatorLeader.stopMotor();
+        elevatorFollower.stopMotor();
     }
 }

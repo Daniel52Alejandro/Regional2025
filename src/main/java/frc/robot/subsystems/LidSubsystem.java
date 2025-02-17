@@ -3,9 +3,10 @@ package frc.robot.subsystems;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
 import com.revrobotics.spark.SparkMax;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants.MechanismsConstants;
 
 public class LidSubsystem extends SubsystemBase{
-    private static SparkMax lid = new SparkMax(12, MotorType.kBrushless);
+    private static SparkMax lid = new SparkMax(MechanismsConstants.kLidMotorPort, MotorType.kBrushless);
     
     public LidSubsystem() { }
 
@@ -18,6 +19,6 @@ public class LidSubsystem extends SubsystemBase{
     }
 
     public void stop(){
-        lid.set(0);
+        lid.stopMotor();
     }
 }

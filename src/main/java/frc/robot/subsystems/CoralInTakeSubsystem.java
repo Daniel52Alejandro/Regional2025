@@ -3,9 +3,10 @@ package frc.robot.subsystems;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
 import com.revrobotics.spark.SparkMax;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants.MechanismsConstants;
 
 public class CoralInTakeSubsystem extends SubsystemBase{
-    private static SparkMax clawWheels = new SparkMax(9, MotorType.kBrushless);
+    private static SparkMax clawWheels = new SparkMax(MechanismsConstants.kCoralMotorPort, MotorType.kBrushless);
     
     public CoralInTakeSubsystem() { }
 
@@ -18,6 +19,6 @@ public class CoralInTakeSubsystem extends SubsystemBase{
     }
 
     public void stop(){
-        clawWheels.set(0);
+        clawWheels.stopMotor();
     }
 }
